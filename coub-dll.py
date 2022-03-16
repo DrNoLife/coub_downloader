@@ -124,19 +124,6 @@ def generate_category_folder(category_name):
         os.makedirs(f"result/{category_name}")
         print("Created folder for category.")
 
-def download_coub(coub):
-    category_name_to_be_used_for_folder = coub['categories'][0]['title'].replace('&', 'and')
-
-    generate_category_folder(category_name_to_be_used_for_folder)
-    download_coub_content(coub)
-    path = combine_video_and_audio(coub['permalink'], coub['title'], category_name_to_be_used_for_folder)
-    if path != "Exit":
-        print(path)
-        get_metadata_for_coub(coub, path)
-        copy_shortcoub_to_folder(path)
-    else:
-        print("Skipping coub, since we've already downloaded it.")
-
 def read_coub_dll_file():
     # Check if file exists.
     file_exists = os.path.exists("coubs_to_download.txt")
@@ -154,12 +141,63 @@ def read_coub_dll_file():
     
     return download_file_list
 
+def add_coub_to_completed_log(id):
+    coub_link = f"https://coub.com/view/{id}"
+    
+    with open('completed_coubs.txt', 'a+') as file:
+        file.write(coub_link+"\n")
+
+def coub_is_already_downloaded(id):
+    # Open file.
+    with open('completed_coubs.txt', 'r') as file:
+
+        # Search through file.
+        for line in file:
+            line_array = line.split('/')
+            target = line_array[4]
+            target = target.split()
+            target = target[0]
+
+            # If we get match, return true.
+            if target == id:
+                return True
+
+    return False
+
+def download_coub(coub):
+    category_name_to_be_used_for_folder = coub['categories'][0]['title'].replace('&', 'and')
+
+    coub_already_downloaded = coub_is_already_downloaded(coub['permalink'])
+    if coub_already_downloaded is True:
+        print("Coub already downloaded before - skipping.")
+        return False
+
+    generate_category_folder(category_name_to_be_used_for_folder)
+    download_coub_content(coub)
+    path = combine_video_and_audio(coub['permalink'], coub['title'], category_name_to_be_used_for_folder)
+    if path != "Exit":
+        print(path)
+        get_metadata_for_coub(coub, path)
+        copy_shortcoub_to_folder(path)
+        add_coub_to_completed_log(id)
+
+    else:
+        add_coub_to_completed_log(id)
+        print("Skipping coub, since we've already downloaded it.")
+
 # Go through a list of URL's.
 coubs_to_download = read_coub_dll_file()
+
+# For "progress bar"
+coubs_to_process = len(coubs_to_download)
+current_coub_number = 0
 
 # Get the ID.
 for c in coubs_to_download:
     try:
+        current_coub_number += 1
+        print(f"[{current_coub_number - 1}/{coubs_to_process - 1}] - ", end=' ')
+
         id = c.split('/')[4]
 
         # Get coub info from API.
@@ -171,6 +209,14 @@ for c in coubs_to_download:
 
         download_coub(coub)
     except:
-        print("An error occured for this coub (most likely, because we are at the end of the list, and there's a new line that's being annoying).")
+        # Check if error log exists - if not create it.
+        with open('error_log.txt', 'a+') as file:
+            if c != None:
+                file.write(c+"\n")
 
+        # Write to error log.
+        print("An error occured for this coub (check error log to see which coub failed).")
+
+# We are done, we have gone through the entire list of coubs to download. So let's clean the download file.
+open("coubs_to_download.txt", 'w').close()
 print("Done.")

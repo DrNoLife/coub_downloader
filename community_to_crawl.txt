@@ -1,2 +1,2 @@
-https://coub.com/community/anime
+coub.com/community/anime
 order:views_count

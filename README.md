@@ -5,11 +5,6 @@ The video sharing website Coub has announced it's closure. So I want a way to sa
 I have a few more things planned for it. But I want to set this straight, I don't plan on making a "proper" GUI for the program.<br/>
 With that said, what I do plan on doing is: Create a way to go through your entire list of "Liked" coubs. This is not exposed from the API, as far as I could see, but I did find a way that would make it possible.
 
-Other than that, I also plan on implementing this:
-* Error log, så any coubs that fails to be downloaded, gets logged so the user can download them manually.
-* Progress "bar", so one can see how long they are during downloading.
-* Text file acting as a "already downloaded" list, so we easier and faster can skip coubs we've already downloaded.
-
 ## Extra notes
 Right so another update: 
 
@@ -18,6 +13,7 @@ Right so another update:
 After using the community crawler, the text document "coubs_to_download.txt" should be filled with many, many, hundreds of links.<br/>
 If this is the case, then use the program *coub-dll.py*. This will go through that list, and download every single video.
 
+Added progress bar, a better "completed" list and something else I forgot.
 
 # How to use
 VERY VERY VERY EARLY STAGE!
@@ -34,6 +30,25 @@ Other than that, do this:
 5) Run the program.
 
 This process will be made a lot easier in the future, but for now, it is what it is. As I said, still very early stage.
+
+## Requirements for the program
+
+You need to have Python installed (I used the latest version). <br/ >
+https://www.python.org/downloads/
+
+The program needs the following libraries:
+* requests
+* json
+* urllib.request
+* subprocess
+* os
+* shutil
+
+If you don't have them installed, use pip to install them:
+
+```
+pip install requests
+```
 
 ## community_to_crawl.txt
 This text file decides what community we'll look for coubs in. Only 2 lines should exist in this text document, and it should use this syntax:
