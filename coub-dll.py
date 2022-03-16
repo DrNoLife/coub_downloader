@@ -171,6 +171,6 @@ for c in coubs_to_download:
 
         download_coub(coub)
     except:
-        print("An error occured for this coub.")
+        print("An error occured for this coub (most likely, because we are at the end of the list, and there's a new line that's being annoying).")
 
 print("Done.")
