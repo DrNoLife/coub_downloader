@@ -33,10 +33,11 @@ This process will be made a lot easier in the future, but for now, it is what it
 
 ## Requirements for the program
 
-You need to have Python installed (I used the latest version). <br/ >
+You need to have Python installed (I used the latest version). <br />
 https://www.python.org/downloads/
 
 The program needs the following libraries:
+* ffmpeg
 * requests
 * json
 * urllib.request
