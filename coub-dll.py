@@ -24,7 +24,7 @@ def handle_coub_folder(path):
         return True
 
 def handle_coub_name(name):
-    return name.replace('|', ',').replace('/', '').replace('\\', '').replace(':', '').replace("http", '').replace("https", '')
+    return name.replace('|', ',').replace('/', '').replace('\\', '').replace(':', '').replace("http", '').replace("https", '').replace('?','').replace('*', '').replace('<', '').replace('>', '').replace('\'', '').replace('"', '')
 
 def combine_video_and_audio(coub_id, coub_name, category_name, path = "default"):
     if path == "default":
@@ -49,6 +49,7 @@ def combine_video_and_audio(coub_id, coub_name, category_name, path = "default")
     # Checks if folder for this coub exists. Example: results/my coouuubbshere
     coub_has_been_processed_before = handle_coub_folder(f"{save_path}{category_name}/{coub_name}_{coub_id}")
     if coub_has_been_processed_before:
+        print(f"{save_path}{category_name}/{coub_name}_{coub_id}")
         return "Exit"
 
     # Handles the "short" version of the coub. 
@@ -158,15 +159,18 @@ coubs_to_download = read_coub_dll_file()
 
 # Get the ID.
 for c in coubs_to_download:
-    id = c.split('/')[4]
+    try:
+        id = c.split('/')[4]
 
-    # Get coub info from API.
-    url = "https://coub.com/api/v2/coubs/" + id
-    coub_json = requests.get(url).text
+        # Get coub info from API.
+        url = "https://coub.com/api/v2/coubs/" + id
+        coub_json = requests.get(url).text
 
-    # Download and combine.
-    coub = json.loads(coub_json)
+        # Download and combine.
+        coub = json.loads(coub_json)
 
-    download_coub(coub)
+        download_coub(coub)
+    except:
+        print("An error occured for this coub.")
 
 print("Done.")
