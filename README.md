@@ -1,6 +1,14 @@
 # coub_downloader
 The video sharing website Coub has announced it's closure. So I want a way to save all my liked coubs from the website.
 
+# To-Do
+I have a few more things planned for it. But I want to set this straight, I don't plan on making a "proper" GUI for the program.<br/>
+With that said, what I do plan on doing is: Create a way to go through your entire list of "Liked" coubs. This is not exposed from the API, as far as I could see, but I did find a way that would make it possible.
+
+Other than that, I also plan on implementing this:
+* Error log, så any coubs that fails to be downloaded, gets logged so the user can download them manually.
+* Progress "bar", so one can see how long they are during downloading.
+
 ## Extra notes
 Right so another update: 
 
