@@ -23,3 +23,6 @@ Other than that, do this:
 5) Run the program.
 
 This process will be made a lot easier in the future, but for now, it is what it is. As I said, still very early stage.
+
+# Extra notes
+Currently working on a "community crawler", so one can get basically ALL links to coubs on that community. This list will be saved locally in the coubs_to_download.txt file. This file can then be processed by the "main" program, which will download every single coub.
