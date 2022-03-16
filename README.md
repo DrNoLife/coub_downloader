@@ -8,6 +8,7 @@ With that said, what I do plan on doing is: Create a way to go through your enti
 Other than that, I also plan on implementing this:
 * Error log, så any coubs that fails to be downloaded, gets logged so the user can download them manually.
 * Progress "bar", so one can see how long they are during downloading.
+* Text file acting as a "already downloaded" list, so we easier and faster can skip coubs we've already downloaded.
 
 ## Extra notes
 Right so another update: 
