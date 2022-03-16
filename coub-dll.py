@@ -126,19 +126,26 @@ def download_coub(coub):
     else:
         print("Skipping coub, since we've already downloaded it.")
 
+def read_coub_dll_file():
+    # Check if file exists.
+    file_exists = os.path.exists("coubs_to_download.txt")
+    if file_exists is not True:
+        # If file doesn't exist, then let's quickly create one.
+        with open("coubs_to_download.txt", 'w') as wp:
+            pass
+        return "Error"
+
+    # If the file exists, then we need to read from it.
+    with open("coubs_to_download.txt", 'r') as f:
+        download_file_content = f.read()
+
+    download_file_list = download_file_content.split("\n")
+    
+    return download_file_list
+
+
 # Go through a list of URL's.
-coubs_to_download = [
-    "https://coub.com/view/2ux3qe",
-    "https://coub.com/view/30b5qk",
-    "https://coub.com/view/3007bw",
-    "https://coub.com/view/2zb80s",
-    "https://coub.com/view/2ylqa7",
-    "https://coub.com/view/30l0l5",
-    "https://coub.com/view/311orx",
-    "https://coub.com/view/30x671",
-    "https://coub.com/view/30zlph",
-    "https://coub.com/view/2ywd31"
-]
+coubs_to_download = read_coub_dll_file()
 
 # Get the ID.
 for c in coubs_to_download:
