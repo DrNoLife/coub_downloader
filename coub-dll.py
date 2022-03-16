@@ -4,6 +4,7 @@ import json
 import urllib.request
 import subprocess
 import os
+import shutil
 
 def download_coub_content(coub_to_dll):
     coub_video = coub_to_dll['file_versions']['html5']['video']['higher']['url']
@@ -16,6 +17,9 @@ def handle_coub_folder(path):
     path_exists = os.path.exists(path)
     if not path_exists:
         os.makedirs(path)
+        return False
+    else:
+        return True
 
 def handle_coub_name(name):
     return name.replace('|', ',').replace('/', '').replace('\\', '').replace(':', '').replace("http", '').replace("https", '')
@@ -41,7 +45,9 @@ def combine_video_and_audio(coub_id, coub_name, path = "default"):
     coub_save_name = f"{save_path}{coub_identification}"
 
     # Checks if folder for this coub exists. Example: results/my coouuubbshere
-    handle_coub_folder(f"{save_path}{coub_name}_{coub_id}")
+    coub_has_been_processed_before = handle_coub_folder(f"{save_path}{coub_name}_{coub_id}")
+    if coub_has_been_processed_before:
+        return "Exit"
 
     # Handles the "short" version of the coub. 
     # This gets placed in the main results folder.
@@ -55,7 +61,7 @@ def combine_video_and_audio(coub_id, coub_name, path = "default"):
     subprocess.run(ffmpeg_command_short)
     subprocess.run(ffmpeg_command_long)
 
-    print(f"{coub_save_name}")
+    print(f"{save_path}{coub_name}_{coub_id}")
 
     return f"{save_path}{coub_name}_{coub_id}"
 
@@ -97,27 +103,42 @@ def get_metadata_for_coub(coub, path):
     output = output + f"\ntags\t{tags}"
 
     # Write the output to a file.
-    with open(f"{path}/summary.txt", "w+") as outfile:
+    with open(f"{path}/summary.txt", "w+", encoding="utf-8") as outfile:
         outfile.write(output)
 
     # And just because why not, let's write all the json content to a file as well.
-    with open(f"{path}/detailed.json", "w") as outfile:
+    with open(f"{path}/detailed.json", "w", encoding="utf-8") as outfile:
         json.dump(coub, outfile)
 
+def copy_shortcoub_to_folder(path):
+    file_path = path + ".mp4"
+    blah = file_path.split('/')
+    file_name = blah[1]
+
+    shutil.copyfile(file_path, path + "/" + file_name)
 
 def download_coub(coub):
     download_coub_content(coub)
     path = combine_video_and_audio(coub['permalink'], coub['title'])
-    get_metadata_for_coub(coub, path)
-
-
-
+    if path != "Exit":
+        get_metadata_for_coub(coub, path)
+        copy_shortcoub_to_folder(path)
+    else:
+        print("Skipping coub, since we've already downloaded it.")
 
 # Go through a list of URL's.
 coubs_to_download = [
-    "https://coub.com/view/2ux3qe"
+    "https://coub.com/view/2ux3qe",
+    "https://coub.com/view/30b5qk",
+    "https://coub.com/view/3007bw",
+    "https://coub.com/view/2zb80s",
+    "https://coub.com/view/2ylqa7",
+    "https://coub.com/view/30l0l5",
+    "https://coub.com/view/311orx",
+    "https://coub.com/view/30x671",
+    "https://coub.com/view/30zlph",
+    "https://coub.com/view/2ywd31"
 ]
-
 
 # Get the ID.
 for c in coubs_to_download:
