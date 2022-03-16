@@ -16,20 +16,43 @@ If this is the case, then use the program *coub-dll.py*. This will go through th
 Added progress bar, a better "completed" list and something else I forgot.
 
 # How to use
-VERY VERY VERY EARLY STAGE!
-You can see which libraries are being used, by taking a look at the coub-dll.py file.
-So install those.
 
-Other than that, do this:
-1) Clone the repo.
-2) Inside the repo, add 2 folders:
-	* temp
+Make sure you have Python installed.
+
+Make sure you have the libraries required installed (check a bit further down to see which ones are needed).
+
+After than, go ahead and download / clone the repo. <br />
+After download, we need to fix a few things, so do the following:
+
+1) Inside the repo, open the file *completed_coubs.txt*.
+2) Delete all content within this file. After that, save it and close the file.
+3) Create 2 folders inside the repo.
 	* result
-3) Open coub-dll.py up in some sort of editor
-4) Go down towards the button and the find line that says "coubs_to_download", and change the values to whatever coub you want to download.
-5) Run the program.
+	* temp
 
-This process will be made a lot easier in the future, but for now, it is what it is. As I said, still very early stage.
+After you've cleaned out the text file and added the two folders, we should be ready.
+
+You can use the *coubs_to_download.txt* file to mention which coubs should be downloaded. <br />
+Each line should represent a link to a coub, example: 
+
+```
+https://coub.com/view/31159x
+https://coub.com/view/30ysj6
+https://coub.com/view/3113aa
+```
+
+After this, you can save the file and close it. Now run the *coub-dll.py* file by using your Terminal / CMD / Powershell. <br />
+The result of this will be saved in the, result folder.
+
+If you want to mass download from communities, do the following:
+
+1) Find the link to the community, example: coub.com/community/anime
+2) Open the text file *community_to_crawl.txt* and replace the very first line with your link.
+3) The second line can be used to change the ordering (views_count vs likes_count).
+4) After this, save the file and close it.
+5) Now run the python file *crawl_community_save_to_list.py*
+
+After this is complete, just run the other program again, just like before. This will download all the videos found by the crawler.
 
 ## Requirements for the program
 
@@ -64,4 +87,7 @@ The *"views_count"* can be exchanged for *"likes_count"*.
 # Notes
 This website was really good, for showing what API endspoints to use.
 https://github-wiki-see.page/m/HelpSeeker/CoubDownloader/wiki/Coub-API
+
+I realize the documentation is a bit wack right now, but honestly, it's a rushed job this project, and it works fine for me. <br />
+I don't have the time to make it more user friendly, I'm sorry, but school is quite needy.
 
