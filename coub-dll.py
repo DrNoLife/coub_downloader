@@ -1,4 +1,5 @@
 from __future__ import print_function
+from unittest import skip
 import requests
 import json
 import urllib.request
@@ -167,11 +168,6 @@ def coub_is_already_downloaded(id):
 def download_coub(coub):
     category_name_to_be_used_for_folder = coub['categories'][0]['title'].replace('&', 'and')
 
-    coub_already_downloaded = coub_is_already_downloaded(coub['permalink'])
-    if coub_already_downloaded is True:
-        print("Coub already downloaded before - skipping.")
-        return False
-
     generate_category_folder(category_name_to_be_used_for_folder)
     download_coub_content(coub)
     path = combine_video_and_audio(coub['permalink'], coub['title'], category_name_to_be_used_for_folder)
@@ -199,6 +195,12 @@ for c in coubs_to_download:
         print(f"[{current_coub_number - 1}/{coubs_to_process - 1}] - ", end=' ')
 
         id = c.split('/')[4]
+
+        # Check if we have downloaded this coub before.
+        coub_already_downloaded = coub_is_already_downloaded(id)
+        if coub_already_downloaded is True:
+            print("Coub already downloaded before - skipping.")
+            continue
 
         # Get coub info from API.
         url = "https://coub.com/api/v2/coubs/" + id
