@@ -3,12 +3,11 @@ The video sharing website Coub has announced it's closure. So I want a way to sa
 
 Very rough and direct video showing how to use the program: https://www.youtube.com/watch?v=lZyFNhzX4Rg
 
-I will post another link, showing how to use the "get all likes" feature. Will be out later today.
+Further guide on how to download all liked videos: https://www.youtube.com/watch?v=4JP9CT-RUng
 
 ## Extra notes
 
 ### New new new update.
-I have finished the code for getting all the users liked coubs. I will update the repo soon. Give me a few more hours. (posted 20:17 - 17/03/2022)
 
 Right so another update: 
 
