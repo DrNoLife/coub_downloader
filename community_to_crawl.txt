@@ -1,2 +1,2 @@
 coub.com/community/anime
-order:views_count
+order:likes_count

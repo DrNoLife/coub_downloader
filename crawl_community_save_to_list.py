@@ -34,7 +34,8 @@ from_local_file = get_community_from_file()
 community_link = from_local_file[0]
 community_order = from_local_file[1]
 community_to_crawl = community_link.split('/')[2]
-url = f"https://coub.com/api/v2/timeline/community/{community_to_crawl}/fresh?order_by={community_order}"
+#url = f"https://coub.com/api/v2/timeline/community/{community_to_crawl}/fresh?order_by={community_order}"
+url = f"https://coub.com/api/v2/timeline/community/{community_to_crawl}/quarter"
 
 
 def make_request_to_api(apiurl, current_page = 1, max_page = 1):
@@ -42,7 +43,7 @@ def make_request_to_api(apiurl, current_page = 1, max_page = 1):
     if current_page == 1:
         json_response = requests.get(apiurl).text
     else:
-        json_response = requests.get(f"{apiurl}&page={current_page}").text
+        json_response = requests.get(f"{apiurl}?page={current_page}").text
     
     community_overview = json.loads(json_response)
 
