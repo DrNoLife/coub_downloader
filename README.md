@@ -10,6 +10,14 @@ https://www.youtube.com/watch?v=P5Pu1i0lGKk
 
 ## Extra notes
 
+**NEW BRANCH** <br />
+I created a new branch called "optimization". You can go ahead and download the content from that one instread. There are 2 differences between the two branches:
+
+1. Changed where in the code I look for duplicate downloads, before it took roughly 1 second (because I called the API first), but now it should be basically instantly.
+2. Changed how the community crawling works. Now the user only needs to supply the community link, and not the sorting. Instead the program now goes through a few different links (/fresh, /rising, /monthly, /quarter, /half). This is to make sure we get as many coubs as we possibly can. <br />This does however mean, that it takes a lot longer to go through a community now (roughly, 4 - 5 times longer).
+
+If these changes are worth it for you, change to the other branch.
+
 ### New new new update.
 
 Right so another update: 
