@@ -61,6 +61,7 @@ https://www.python.org/downloads/
 
 The program needs the following libraries:
 * ffmpeg
+* ffmpeg-python
 * requests
 * json
 * urllib.request
@@ -73,6 +74,10 @@ If you don't have them installed, use pip to install them:
 ```
 pip install requests
 ```
+
+### NOTICE REGARDING FFMPEG
+
+You also need to add ffmpeg to your system environment path. If you don't know how to do this, Google for it. It's relatively straight forward.
 
 ## community_to_crawl.txt
 This text file decides what community we'll look for coubs in. Only 2 lines should exist in this text document, and it should use this syntax:
