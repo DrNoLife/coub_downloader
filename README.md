@@ -5,11 +5,11 @@ Very rough and direct video showing how to use the program: https://www.youtube.
 
 I will post another link, showing how to use the "get all likes" feature. Will be out later today.
 
-# To-Do
-I have a few more things planned for it. But I want to set this straight, I don't plan on making a "proper" GUI for the program.<br/>
-With that said, what I do plan on doing is: Create a way to go through your entire list of "Liked" coubs. This is not exposed from the API, as far as I could see, but I did find a way that would make it possible.
-
 ## Extra notes
+
+### New new new update.
+I have finished the code for getting all the users liked coubs. I will update the repo soon. Give me a few more hours. (posted 20:17 - 17/03/2022)
+
 Right so another update: 
 
 **Community crawler now works** and it supports ordering. It will always sort by "most popular", but the user decides if it's by *views* or *likes*. 
