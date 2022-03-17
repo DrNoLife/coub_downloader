@@ -129,5 +129,5 @@ dmypy.json
 .pyre/
 
 # My custom stuff for this project
-result/*
-temp/*
+#result/*
+#temp/*
