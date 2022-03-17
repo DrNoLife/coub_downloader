@@ -5,6 +5,9 @@ Very rough and direct video showing how to use the program: https://www.youtube.
 
 Further guide on how to download all liked videos: https://www.youtube.com/watch?v=4JP9CT-RUng
 
+**If you have the requirements installed, AND Git, you can use this video as a reference for how to use the program: ** <br />
+https://www.youtube.com/watch?v=P5Pu1i0lGKk
+
 ## Extra notes
 
 ### New new new update.
